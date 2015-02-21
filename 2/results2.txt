@@ -1,0 +1,66 @@
+#1
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 100 
+Times:		 100 
+Milliseconds:	 11 
+
+Giant:		 7.21e+01 (stddev: 5.63e+00) 
+No Isolated:	 2.61e+02 (stddev: 7.04e+01) 
+Connected:	 2.63e+02 (stddev: 6.93e+01) 
+
+Exiting...
+#2
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 1000 
+Times:		 1000000 
+Milliseconds:	 126167 
+
+Giant:		 6.96e+02 (stddev: 1.76e+01) 
+No Isolated:	 3.74e+03 (stddev: 6.40e+02) 
+Connected:	 3.75e+03 (stddev: 6.39e+02) 
+
+Exiting...
+#3
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 10000 
+Times:		 100000 
+Milliseconds:	 173453 
+
+Giant:		 6.93e+03 (stddev: 5.53e+01) 
+No Isolated:	 4.90e+04 (stddev: 6.43e+03) 
+Connected:	 4.90e+04 (stddev: 6.43e+03) 
+
+Exiting...
+#4
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 100000 
+Times:		 10000 
+Milliseconds:	 258059 
+
+Giant:		 6.93e+04 (stddev: 1.75e+02) 
+No Isolated:	 6.04e+05 (stddev: 6.47e+04) 
+Connected:	 6.04e+05 (stddev: 6.47e+04) 
+
+Exiting...
+#5
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 1000000 
+Times:		 1000 
+Milliseconds:	 466612 
+
+Giant:		 6.93e+05 (stddev: 5.68e+02) 
+No Isolated:	 7.23e+06 (stddev: 6.75e+05) 
+Connected:	 7.23e+06 (stddev: 6.75e+05) 
+
+Exiting...
+#6
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 10000000 
+Times:		 100 
+Milliseconds:	 1539710 
+
+Giant:		 6.93e+06 (stddev: 1.67e+03) 
+No Isolated:	 8.27e+07 (stddev: 5.88e+06) 
+Connected:	 8.27e+07 (stddev: 5.88e+06) 
+
+Exiting...

@@ -1,0 +1,66 @@
+#1
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 100 
+Times:		 1 
+Milliseconds:	 3 
+
+Giant:		 6.70e+01 (stddev: NaN) 
+No Isolated:	 1.99e+02 (stddev: NaN) 
+Connected:	 1.99e+02 (stddev: NaN) 
+
+Exiting...
+#2
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 1000 
+Times:		 1 
+Milliseconds:	 4 
+
+Giant:		 6.90e+02 (stddev: NaN) 
+No Isolated:	 3.46e+03 (stddev: NaN) 
+Connected:	 3.46e+03 (stddev: NaN) 
+
+Exiting...
+#3
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 10000 
+Times:		 1 
+Milliseconds:	 11 
+
+Giant:		 6.99e+03 (stddev: NaN) 
+No Isolated:	 4.88e+04 (stddev: NaN) 
+Connected:	 4.88e+04 (stddev: NaN) 
+
+Exiting...
+#4
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 100000 
+Times:		 1 
+Milliseconds:	 44 
+
+Giant:		 6.93e+04 (stddev: NaN) 
+No Isolated:	 5.76e+05 (stddev: NaN) 
+Connected:	 5.76e+05 (stddev: NaN) 
+
+Exiting...
+#5
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 1000000 
+Times:		 1 
+Milliseconds:	 458 
+
+Giant:		 6.92e+05 (stddev: NaN) 
+No Isolated:	 6.51e+06 (stddev: NaN) 
+Connected:	 6.51e+06 (stddev: NaN) 
+
+Exiting...
+#6
+MEAN & STANDARD DEVIATION RESULTS
+Nodes:		 10000000 
+Times:		 1 
+Milliseconds:	 16542 
+
+Giant:		 6.93e+06 (stddev: NaN) 
+No Isolated:	 9.00e+07 (stddev: NaN) 
+Connected:	 9.00e+07 (stddev: NaN) 
+
+Exiting...
