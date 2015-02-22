@@ -12,10 +12,8 @@ public class RandomQueue<Item> implements Iterable<Item> {
     /*
      * Data Fields
      */
-    private Item[] rq;            
-    private int rq_size = 0;          
-    private int firstNode = 0;    
-    private int lastNode  = 0;      
+    private Item[] rq;
+    private int rq_size = 0;
 
     /**
      * The RandomQueue constructor creates a new array
@@ -33,7 +31,7 @@ public class RandomQueue<Item> implements Iterable<Item> {
     }
 
     /**
-     * returns the size (amount of elements in the random queue
+     * returns the size (amount of elements in the random queue)
      * @return integer size of random queue
      */
     public int size() {
@@ -121,24 +119,24 @@ public class RandomQueue<Item> implements Iterable<Item> {
      * @return a RandomQueueIterator object
      */
     public Iterator<Item> iterator() {
-        return new RandomQueueIerator();
+        return new RandomQueueIterator();
     }
 
     /**
      * The RandomQueueIterator class
      */
-    private class RandomQueueIerator implements Iterator<Item> {
+    private class RandomQueueIterator implements Iterator<Item> {
 
         Item[] temp;
-        private int j = 0;
+        private int currentIndex = 0;
 
         /**
          * RandomQueueIterator constructor creates a new array of precisely rq_size
          * and copies the values from the original array over in random order.
          */
-        public RandomQueueIerator(){
-            int elm = 0;
+        public RandomQueueIterator(){
             temp = (Item[]) new Object[rq_size];
+            int elm = 0;
 
             for (int i = 0; i < rq_size; i++){
                 Item item = rq[i];
@@ -154,7 +152,7 @@ public class RandomQueue<Item> implements Iterable<Item> {
          * Returns true if there are more elements to iterate over
          * @return boolean true or false
          */
-        public boolean hasNext()  { return j < rq_size; }
+        public boolean hasNext()  { return currentIndex < rq_size; }
 
         /**
          * Remove method not implemented intentionally
@@ -166,13 +164,16 @@ public class RandomQueue<Item> implements Iterable<Item> {
          * @return a Item element 
          */
         public Item next() {
-            Item n = temp[j];
-            j++;
+            Item n = temp[currentIndex];
+            currentIndex++;
             return n;
         }
     }
 
-
+    /**
+     * The main method had client code that was provided 
+     * by the teacher of the course, and remains untouched.
+     */
     public static void main(String args[])
     {
 		// Build a queue containing the Integers 1,2,...,6:
