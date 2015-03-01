@@ -5,12 +5,10 @@ class State implements Comparable<State>{
 	private int population;
 	private double rank;
 
-
-
 	public State(String name, int population){
 		this.name = name;
 		this.population = population;
-		this.seats = 1;
+		seats = 1;
 	}
 
 	public String getName(){
@@ -22,28 +20,22 @@ class State implements Comparable<State>{
 	}
 
 	public void incSeats(){
-		this.seats++;
-		StdOut.println(getName()+ " seats are now: " + seats);
+		seats++;
 	}
 
 	public int getPopulation(){
 		return population;
 	}
 
+	public double getRank(){
+		rank = population / Math.sqrt((seats*(seats+1)));
+		return rank;
+	}
+
 	@Override
 	public int compareTo(State other){
-		rank = population / Math.sqrt(seats*(seats+1));
+		rank = getRank();
 
-		StdOut.println(getName() + " : " + rank + " Seats: " + seats);
-		
-		if (rank > other.rank){
-			return 1;
-		}
-		else if (rank == other.rank){
-			return 0;
-		}
-		else{
-			return -1;
-		}
+		return Double.compare(rank, other.getRank());
 	}
 }
