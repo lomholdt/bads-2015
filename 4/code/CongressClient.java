@@ -1,3 +1,11 @@
+/**
+ * Class: CongressClient
+ * This is the client for our Congress program. 
+ * It utilises the max priority queue (MaxPQ) from 
+ * the course book.
+ * @author Dennis Sadeler Shapira
+ * @author Jonas Lomholdt
+ */
 class CongressClient{
 	public static void main(String[] args){
 		MaxPQ pq = new MaxPQ();
@@ -13,7 +21,7 @@ class CongressClient{
 			pq.insert(state);
 		}
 
-		while (numberOfSeats != 0){ // reorder the queue
+		while (numberOfSeats != 0){ // reorder the queue (give seats)
 			State s = (State)pq.delMax();
 			s.incSeats();
 			numberOfSeats--;

@@ -1,3 +1,9 @@
+/**
+ * Class: State
+ * This class represents each state. 
+ * @author Dennis Sadeler Shapira
+ * @author Jonas Lomholdt
+ */
 class State implements Comparable<State>{
 
 	private String name;
@@ -35,7 +41,6 @@ class State implements Comparable<State>{
 	@Override
 	public int compareTo(State other){
 		rank = getRank();
-
 		return Double.compare(rank, other.getRank());
 	}
 }
