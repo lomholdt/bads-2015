@@ -6,5 +6,4 @@ public class Species{
 	Species(int d){
 		kGrams = new double[d];
 	}
-
 }
