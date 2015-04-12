@@ -34,7 +34,7 @@ public class GorillaHash{
 				setKgrams(b, d);
 				StdOut.print(String.format("%14.3f" , getSimilarity(a, b))); 
 			}
-			StdOut.println();			
+			StdOut.println();
 		}
 	}
 
@@ -70,7 +70,7 @@ public class GorillaHash{
 		for (int i = 0; i < a.length; i++){
 			sum += Math.pow(a[i], 2);
 		}
-		StdOut.println("Length: " + Math.sqrt(sum));
+		// StdOut.println("Length: " + Math.sqrt(sum));
 		return Math.sqrt(sum);
 	}
 
