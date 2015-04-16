@@ -136,5 +136,18 @@ public class Bag<Item> implements Iterable<Item> {
         }
     }
 
+    @Override
+    public String toString(){
+        Node<Item> copyOfFirst = first;
+        String s = "Bag: ";
+        s += "[";
+        while(copyOfFirst != null){
+            s+= copyOfFirst.item + ", ";
+            copyOfFirst = copyOfFirst.next;
+        }
+        s += "]";
+        return s;
+    }
+
 
 }
