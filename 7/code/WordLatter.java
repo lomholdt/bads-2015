@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Collection;
 import java.io.File;
+import java.util.ArrayList;
 
 public class WordLatter{
 
@@ -13,7 +14,7 @@ public class WordLatter{
 	private static TreeMap<String, Set<String>> fourLetterMap = new TreeMap<>();
 	private static TreeMap<String, Bag<String>> graph = new TreeMap<>();
 
-	private static TreeMap<String, Boolean> marked = new TreeMap<>();
+	private static Set<String> marked;
 	private static TreeMap<String, Integer> distTo = new TreeMap<>();
 
 	private static void addWordToMap(String word){
@@ -26,7 +27,7 @@ public class WordLatter{
 
 	private static void addPermutationsToMap(String word, String sortedWord){
 
-		StdOut.println("Word: " + word);
+		// StdOut.println("Word: " + word);
 
 		for (int i = 0; i < sortedWord.length(); i++) {
 			Set<String> set = new TreeSet<>();
@@ -35,7 +36,7 @@ public class WordLatter{
 			String wordPermutation = sb.toString();
 
 			// PRINT TEST
-			StdOut.println(wordPermutation);
+			// StdOut.println(wordPermutation);
 
 			if(permutationMap.containsKey(wordPermutation)){
 				Set<String> setValues = permutationMap.get(wordPermutation);
@@ -72,29 +73,44 @@ public class WordLatter{
     }
 
     private static int bfs(String from, String to) {
+    	marked = new TreeSet<>();
+    	TreeMap<String, String> edgesFrom = new TreeMap<String, String>(); // from, to 
     	StdOut.println("From: " + from + " To: " + to);
-    	if (!graph.containsKey(from)) return -2;
+    	if (!graph.containsKey(from)) return -1;
     	if (from.equals(to)) return 0;
         Queue<String> q = new Queue<String>();
-        marked.put(from, true);
+        marked.add(from);
         distTo.put(from, 0);
-        q.enqueue(from); // s
+        q.enqueue(from);
+        ArrayList<String> al = new ArrayList<>();
+        al.add(from);
+
         while (!q.isEmpty()) {
             String v = q.dequeue();
-            StdOut.println(adj(v));
             for (String word : adj(v)) {
-            	//if (marked.get(word) == null) return -2;
-            	StdOut.println("Checking neighbour " + word);
-                if (!marked.get(word)) {
-                    distTo.put(word, distTo.get(v) + 1);
-                    marked.put(word, true);
+            	edgesFrom.put(v, word);
 
-                    StdOut.println("Does " + word + " equals " + to);
+                if (!marked.contains(word)) {
+                    distTo.put(word, distTo.get(v) + 1);
+                    marked.add(word);
+
                     if (word.equals(to)){
-                    	StdOut.println(word + " equals " + to);
+
+						String temp = word;
+                    	while(temp != null){
+                    		String fromNode = edgesFrom.get(temp);
+                    		StdOut.print(fromNode);
+                    		temp = fromNode;
+
+                    	}
+
+
+
+                    	StdOut.println(to);
+
+
                     	return distTo.get(word);
                     }
-                    // marked[word] = true;
                     q.enqueue(word);
                 }
             }
@@ -111,7 +127,6 @@ public class WordLatter{
 			String word = StdIn.readLine();
 			addWordToMap(word);
 			graph.put(word, new Bag<String>());
-			marked.put(word, false);
 		}
 
 		// Collection permutationMapEntrySet = permutationMap.entrySet();
@@ -134,7 +149,7 @@ public class WordLatter{
 				} 
 				// if == (.equals) lav en arc/edge mellem de to values
 				if (permutationEntry.getKey().equals(fourLetterEntry.getKey())){
-					StdOut.println("Key Match: " + permutationEntry.getKey() + ", " + fourLetterEntry.getKey());
+					// StdOut.println("Key Match: " + permutationEntry.getKey() + ", " + fourLetterEntry.getKey());
 					// add edge to all words in wordFrom set 
 					for (String wordFrom : wordFromSet) {
 						Set<String> wordToSet = permutationEntry.getValue();
@@ -155,15 +170,15 @@ public class WordLatter{
 		long end = (System.currentTimeMillis() - start);
 		StdOut.printf("Graph Done in %d ms%n", end);
 
-		printGraph();
+		// printGraph();
 
 		In in = new In(new File(args[0]));
 		while(in.hasNextLine()){
 			try{
 				String wordFrom = in.readString();
-				StdOut.println("From: " + wordFrom);
+				// StdOut.println("From: " + wordFrom);
 				String wordTo = in.readString();
-				StdOut.println("To: " + wordTo);
+				// StdOut.println("To: " + wordTo);
 				StdOut.println(bfs(wordFrom, wordTo));
 				
 			}
