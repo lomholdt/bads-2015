@@ -24,7 +24,6 @@ public class SpanningUSA{
 
         		
         		if(!input.contains("[")){
-        			StdOut.println(input);
         			citiesToInt.put(input, count);
         			intToCities.put(count, input);
         			count++;
@@ -44,12 +43,8 @@ public class SpanningUSA{
         		// 	StdOut.print("Group: " + ep.group());
         		// }
 
-        		StdOut.println(input);
         		String weightStr = input.substring(input.indexOf("[")+1 , input.indexOf("]"));
-        		StdOut.println(weightStr);
-
                 String cities = input.substring(0 , input.indexOf("[")-1 );
-                StdOut.println(cities);
                 String  first = cities.substring(0 , input.indexOf("--"));
                 String  second = cities.substring(input.indexOf("--")+2 , cities.length());
                 // first = first.replace("\"", "");
@@ -64,18 +59,23 @@ public class SpanningUSA{
     			// String second = sa[0];
     			// String weightString = sa[1].substring(1, sa[1].length()-1);
     			// Double weight = Double.parseDouble(weightString+".0");
-    			StdOut.println(first);
-    			StdOut.println(second);
-    			StdOut.println(weight);
+   
 
 				Edge e = new Edge(citiesToInt.get(first), citiesToInt.get(second), weight);
 				graph.addEdge(e);
-    			
-    			StdOut.println(String.format("%s - %s w: %s", first, second, weight));
         	}
 			StdOut.println(graph);
+			for (Edge e : graph.edges()) {
+				int val1 = e.either();
+				int val2 = e.other(val1);
 
-			KruskalMST mst = new KruskalMST(graph);
+				String cityA = intToCities.get(val1);
+				String cityB = intToCities.get(val2);
+				Double weight = e.weight();
+
+			}
+
+			PrimMST mst = new PrimMST(graph);
 
 			double weightSum = 0.0;
 			for (Edge e : mst.edges()) {
