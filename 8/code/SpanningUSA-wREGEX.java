@@ -12,39 +12,56 @@ public class SpanningUSA{
 	private static EdgeWeightedGraph graph;
 
 	public static void main(String[] args) {
-        String input = "";
 
         if(!StdIn.isEmpty()){
+	        Pattern edges = Pattern.compile("(?m)^(\\w+.?\\w*)$");
+	        Pattern edgePattern = Pattern.compile("(?!\")\\w+\\s*\\w*[^\"-\\[\\]]?");
+
         	int count = 0;
-        	while(!StdIn.isEmpty()){ // Add vertices to map
-        		input = StdIn.readLine().trim();
+        	while(StdIn.hasNextLine()){ // Add vertices to map
+        		String input = StdIn.readLine().trim();
 
         		if(!input.contains("[")){
         			citiesToInt.put(input, count);
         			intToCities.put(count, input);
         			count++;
         		}
-        		else{ break; }
+        		else{
+        			break;
+        		}
         	}
+        	graph = new EdgeWeightedGraph(citiesToInt.size());
         	
-            graph = new EdgeWeightedGraph(citiesToInt.size());
-        	
-        	while(!StdIn.isEmpty()){
-        		
+        	int index = 0;
+        	while(StdIn.hasNextLine()){
+        		String input = StdIn.readLine();
+        		// Matcher ep = edgePattern.matcher(input);
+        		// while(ep.find()){
+        		// 	StdOut.print("Group: " + ep.group());
+        		// }
+
         		String weightStr = input.substring(input.indexOf("[")+1 , input.indexOf("]"));
                 String cities = input.substring(0 , input.indexOf("[")-1 );
                 String  first = cities.substring(0 , input.indexOf("--"));
                 String  second = cities.substring(input.indexOf("--")+2 , cities.length());
-
+                // first = first.replace("\"", "");
+                // second = second.replace("\"", "");
                 Double weight = Double.parseDouble(weightStr);
+
+
+    			// String[] s = input.split("--");
+    			// String[] sa = s[1].split(" ");
+
+    			// String first = s[0];
+    			// String second = sa[0];
+    			// String weightString = sa[1].substring(1, sa[1].length()-1);
+    			// Double weight = Double.parseDouble(weightString+".0");
+   
+
 				Edge e = new Edge(citiesToInt.get(first), citiesToInt.get(second), weight);
 				graph.addEdge(e);
-                input = StdIn.readLine();
         	}
-               
-
-			//StdOut.println(graph);
-
+			StdOut.println(graph);
 			for (Edge e : graph.edges()) {
 				int val1 = e.either();
 				int val2 = e.other(val1);
@@ -52,11 +69,12 @@ public class SpanningUSA{
 				String cityA = intToCities.get(val1);
 				String cityB = intToCities.get(val2);
 				Double weight = e.weight();
+
 			}
 
 			PrimMST mst = new PrimMST(graph);
-			double weightSum = 0.0;
 
+			double weightSum = 0.0;
 			for (Edge e : mst.edges()) {
 				int val1 = e.either();
 				int val2 = e.other(val1);

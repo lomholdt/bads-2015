@@ -1,0 +1,5 @@
+for (int row = dx-1; row <= dx+1; row++){
+	for(int col = dy-1; col <= dy+1; col++){
+	// gives all neighbours
+	}
+}
