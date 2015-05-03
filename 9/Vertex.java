@@ -3,7 +3,7 @@ public class Vertex implements Comparable<Vertex>{
 	public int y;
 	public int deltax;
 	public int deltay;
-	public boolean isVisited;
+	public boolean isGoal;
 
 	Vertex(int x, int y, int deltax, int deltay){
 		this.x = x;
