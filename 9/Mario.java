@@ -25,8 +25,28 @@ public class Mario{
 	private static final String ANSI_RESET = "\u001B[0m";
 	private static final String ANSI_CLS = "\u001b[2J";
     private static final String ANSI_HOME = "\u001b[H";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_INVERT_START = "\033[33;7m";
+    private static final String ANSI_INVERT_END = "\033[0m";
+
+    /**
+     * Colors taken from 
+     * http://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
+     */
+	private static final String ANSI_BLACK = "\u001B[30m";
+	private static final String ANSI_RED = "\u001B[31m";
+	private static final String ANSI_GREEN = "\u001B[32m";
+	private static final String ANSI_YELLOW = "\u001B[33m";
+	private static final String ANSI_BLUE = "\u001B[34m";
+	private static final String ANSI_PURPLE = "\u001B[35m";
+	private static final String ANSI_CYAN = "\u001B[36m";
+	private static final String ANSI_WHITE = "\u001B[37m";
+
+    private static final int DELAY = 350;
+
+    private static final String START_COLOR = ANSI_BLUE;
+    private static final String END_COLOR = ANSI_PURPLE;
+    private static final String POINTER_COLOR = ANSI_YELLOW;
+
 
     Mario() { } // Please do not instansiate this class
 
@@ -41,7 +61,6 @@ public class Mario{
 		buildGraph(startVertices.get(0)); // TODO Husk at lave alle grapher af alle start!
 		bfs(startVertices.get(0)); // BFS
 		animateGrid();
-
 	}
 
 
@@ -56,12 +75,15 @@ public class Mario{
 	public static void animateGrid(){
 		int count = 1;
 		for (int i = path.size() - 1; i >= 0; i--) {
-			grid[path.get(i).x][path.get(i).y] = 'X';
+			int x = path.get(i).x;
+			int y = path.get(i).y;
+			char current = grid[x][y];
+			if(grid[x][y] == ' ') grid[x][y] = 'X';
 			clearScreen();
 			printGrid();
-
-			StdOut.println("Distance: " + count++);
-			delay(350);	
+			if(count == path.size()) StdOut.print(ANSI_INVERT_START); // Blinking text
+			StdOut.println("Distance: " + ANSI_INVERT_START + count++ + " (" + getDistance() + ")" + ANSI_INVERT_END);
+			delay(DELAY);
 		}
 	}
 
@@ -74,8 +96,9 @@ public class Mario{
         try {
             Thread.sleep(millis);
         } catch (InterruptedException exp) {
-        }
+        	}
     }
+
 
 	/**
 	 * Initialise the grid
@@ -115,16 +138,16 @@ public class Mario{
 
 	/**
 	 * Prints the grid
-	 * 
 	 */
 	public static void printGrid(){
-		StdOut.println();
 		for (int row = 0; row < Y; row++) {
 			for (int col = 0; col < X; col++) {
 				char current = grid[col][row];
-				if(current == POINTER) StdOut.print(ANSI_YELLOW);
+				if(current == 'X') StdOut.print(POINTER_COLOR);
+				if(current == 'F') StdOut.print(END_COLOR);
+				if(current == 'S') StdOut.print(START_COLOR);
 				StdOut.print(grid[col][row]);
-				StdOut.print("\u001B[0m");
+				StdOut.print(ANSI_RESET);
 			}
 			StdOut.println();
 		}
