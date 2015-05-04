@@ -77,12 +77,16 @@ public class Mario{
 		for (int i = path.size() - 1; i >= 0; i--) {
 			int x = path.get(i).x;
 			int y = path.get(i).y;
+			int deltax = path.get(i).deltax;
+			int deltay = path.get(i).deltay;
 			char current = grid[x][y];
 			if(grid[x][y] == ' ') grid[x][y] = 'X';
 			clearScreen();
 			printGrid();
-			if(count == path.size()) StdOut.print(ANSI_INVERT_START); // Blinking text
-			StdOut.println("Distance: " + ANSI_INVERT_START + count++ + " (" + getDistance() + ")" + ANSI_INVERT_END);
+			//if(count == path.size()) StdOut.print(ANSI_INVERT_START); // Blinking text
+			//StdOut.println("Distance: " + ANSI_INVERT_START + count++ + " (" + getDistance() + ")" + ANSI_INVERT_END);
+			StdOut.printf("DISTANCE: %s %d (%d) %s %n", ANSI_INVERT_START, count++, getDistance(), ANSI_INVERT_END);
+			StdOut.printf("VELOCITY: %s %d, %d %s %n", ANSI_INVERT_START, deltax, deltay, ANSI_INVERT_END);
 			delay(DELAY);
 		}
 	}
@@ -302,5 +306,4 @@ public class Mario{
 	public static boolean isSafe(int x, int y){
 		return isInBound(x, y) && !isTerrain(x, y);
 	}
-
 }
